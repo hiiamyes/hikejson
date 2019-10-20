@@ -24,3 +24,9 @@ and [manifest.template.js](https://github.com/hiiamyes/paiyun-auto-apply/blob/ma
 Then, rename the firebase config file and manifest.
 
 [Manage Extensions](chrome://extensions/) > [Load unpacked extension](https://developer.chrome.com/extensions/getstarted#unpacked)
+
+## Base packages
+
+```sh
+yarn add -D @babel/core @babel/preset-env @babel/preset-react babel-eslint babel-loader babel-preset-env babel-preset-react
+```

@@ -1,46 +1,60 @@
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  switch (request.action) {
-    case "click":
-      document.querySelector(request.selector).click();
-      sendResponse();
-      break;
-    case "clickAndMute":
-      document.querySelector(request.selector).click = "";
-      document.querySelector(request.selector).click();
-      sendResponse();
-      break;
-    case "select": {
-      const element = document.querySelector(request.selector);
-      element.value = request.value;
-      if ("createEvent" in document) {
-        const evt = document.createEvent("HTMLEvents");
-        evt.initEvent("change", false, true);
-        element.dispatchEvent(evt);
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import React, { useState, useEffect } from "react";
+import { render } from "react-dom";
+import osmWaysToGeoJSON from "../osm-ways-to-geojson";
+import Style from "./style";
+
+const App = () => {
+  const [ways, setWays] = useState([]);
+
+  useEffect(() => {
+    const addMapClickListener = () => {
+      const onMapClick = e => {
+        const className = e.target.className.baseVal;
+        if (className.indexOf("way") !== -1) {
+          const way = className
+            .split(" ")
+            .pop()
+            .split("-")[0]
+            .replace("w", "");
+          setWays(ways.concat([way]));
+        }
+      };
+      const map = document
+        .querySelector("#map iframe")
+        .contentDocument.querySelector("#map");
+      if (map) {
+        map.addEventListener("click", onMapClick);
       } else {
-        element.fireEvent("onchange");
+        setTimeout(addMapClickListener, 500);
       }
-      sendResponse();
-      break;
-    }
-    case "goto":
-      window.location = request.url;
-      sendResponse();
-      break;
-    case "wait":
-      sendResponse(document.querySelector(request.selector) !== null);
-      break;
-    case "insert":
-      document.querySelector(request.selector).value = request.value;
-      sendResponse();
-      break;
-    case "check":
-      document.querySelector(request.selector).checked = true;
-      sendResponse();
-      break;
-    case "getInnerText":
-      sendResponse(document.querySelector(request.selector).innerText);
-      break;
-    default:
-      break;
-  }
-});
+      return () => {
+        map.removeEventListener("click", onMapClick);
+      };
+    };
+    addMapClickListener();
+  });
+
+  return (
+    <Style>
+      <div>
+        <button
+          onClick={async () => {
+            const geoJSON = await osmWaysToGeoJSON(ways.map(id => ({ id })));
+            await navigator.clipboard.writeText(JSON.stringify(geoJSON));
+            alert(JSON.stringify(geoJSON));
+          }}
+        >
+          Create GeoJSON
+        </button>
+        <button onClick={() => setWays([])}>Clear</button>
+      </div>
+      <div>{`ways: ${ways.join(" > ")}`}</div>
+    </Style>
+  );
+};
+
+const waysDiv = document.createElement("div");
+document.body.append(waysDiv);
+render(<App />, waysDiv);
