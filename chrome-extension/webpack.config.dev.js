@@ -34,45 +34,11 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
       },
-      'config.mixpanel': {
-        token: null,
-      },
     }),
   ],
   module: {
     rules: [
       { test: /\.js$/, include: path.join(__dirname, 'src'), use: 'babel-loader' },
-      {
-        test: /(\.scss|\.css)$/,
-        include: path.join(__dirname, 'src'),
-        exclude: path.join(__dirname, 'src', 'browser_action', 'css'),
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins() {
-                return [require('autoprefixer')];
-              },
-            },
-          },
-          'sass-loader',
-        ],
-      },
-      {
-        test: /\.css$/,
-        include: path.join(__dirname, 'src', 'browser_action', 'css'),
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
       {
         test: /\.css$/,
         include: path.join(__dirname, 'node_modules'),

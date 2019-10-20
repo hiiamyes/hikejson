@@ -1,11 +1,8 @@
 import cancel from './cancel';
 import inquiry from './inquiry';
 import apply from './apply';
-// import firebaseConfig from '../../configs/firebaseConfig';
 
-// firebase.initializeApp(firebaseConfig);
-
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((request) => {
   const { action, application, user, applicationNumber } = request;
   switch (action) {
     case 'apply': {

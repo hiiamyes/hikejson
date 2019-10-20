@@ -1,9 +1,9 @@
 {
-  "name": "排雲山莊申請工具",
-  "description": "排雲山莊申請工具",
+  "name": "hikejson",
+  "description": "hikejson",
   "version": "0.0.1",
   "manifest_version": 2,
-  "homepage_url": "http://paiyunautoapply.hiiamyes.com/",
+  "homepage_url": "https://yeslee.me",
   "background": {
     "page": "src/background/build/index.html"
   },

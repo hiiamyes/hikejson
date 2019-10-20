@@ -2,8 +2,8 @@
   "extends": "airbnb",
   "globals": {
     "window": false,
-    "chrome": false,
-    "firebase": false
+    "document": false,
+    "chrome": false
   },
   "rules": {
     "jsx-a11y/href-no-hash": "off",

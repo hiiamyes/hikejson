@@ -2,11 +2,12 @@
 
 ## Getting Started
 
-First install packages:
-
 ```sh
 brew install yarn
+mv manifest.template.js manifest.json
+vim manifest.json
 yarn
+yarn start
 ```
 
 Once packages are installed, follow [Firebase Auth w/ Google Sign-In in Chrome Extensions](https://github.com/firebase/quickstart-js/tree/master/auth/chromextension#firebase-auth-w-google-sign-in-in-chrome-extensions) and update corresponding variables in [firebaseConfig.template.js](https://github.com/hiiamyes/paiyun-auto-apply/blob/master/setting-page/src/configs/firebaseConfig.template.js)
@@ -22,14 +23,4 @@ and [manifest.template.js](https://github.com/hiiamyes/paiyun-auto-apply/blob/ma
 
 Then, rename the firebase config file and manifest.
 
-```sh
-mv manifest.template.js manifest.json
-```
-
-Run the project
-
-`yarn start`
-
-Load the extension
-
-[https://developer.chrome.com/extensions/getstarted#unpacked]()
+[Manage Extensions](chrome://extensions/) > [Load unpacked extension](https://developer.chrome.com/extensions/getstarted#unpacked)
