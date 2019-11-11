@@ -8,7 +8,7 @@
     "page": "src/background/build/index.html"
   },
   "browser_action": {
-    "default_title": "paiyun lodge auto application",
+    "default_title": "hikejson",
     "default_popup": "src/browser_action/build/index.html"
   },
   "content_scripts": [
