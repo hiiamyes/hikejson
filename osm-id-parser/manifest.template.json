@@ -1,16 +1,9 @@
 {
-  "name": "hikejson",
-  "description": "hikejson",
+  "name": "osd-id-parser",
+  "description": "osd-id-parser",
   "version": "0.0.1",
   "manifest_version": 2,
   "homepage_url": "https://yeslee.me",
-  "background": {
-    "page": "src/background/build/index.html"
-  },
-  "browser_action": {
-    "default_title": "hikejson",
-    "default_popup": "src/browser_action/build/index.html"
-  },
   "content_scripts": [
     {
       "matches": ["https://*/*"],

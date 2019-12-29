@@ -1,11 +1,2 @@
-# general
-/**/node_modules
-/**/scripts
-/**/configs/firebaseConfig.js
-/**/build
-
-# chrome extension
-/chrome-extension/manifest.json
-/chrome-extension/manifest.prod.json
-/chrome-extension/paiyun-auto-apply.zip
-/chrome-extension/webpack.config.prod.js
+node_modules
+build

@@ -7,8 +7,6 @@ module.exports = {
   target: "web",
   devtool: "source-map",
   entry: {
-    background: ["./src/background/index.js"],
-    browser_action: "./src/browser_action/index.js",
     content_scripts: "./src/content_scripts/index.js"
   },
   output: {
@@ -21,16 +19,6 @@ module.exports = {
     poll: 1000
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      chunks: ["background"],
-      template: "src/background/index.html",
-      filename: "src/background/build/index.html"
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ["browser_action"],
-      template: "src/browser_action/popup.html",
-      filename: "src/browser_action/build/index.html"
-    }),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development")
